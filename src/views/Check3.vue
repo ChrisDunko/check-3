@@ -1,6 +1,8 @@
 <template>
   <intro></intro>
-  <lists></lists>
+  <lists
+      v-on:selectList="setListFocus"
+  ></lists>
   <items></items>
   <new
       v-if="listNewDialog"
@@ -26,12 +28,22 @@ export default defineComponent({
   data() {
     return {
       listNewDialog: true,
-      itemNewDialog: false
+      itemNewDialog: false,
+      listFocus: ''
     }
   },
   methods: {
     newSave(nameNew: string) {
-      console.log('new: ' + nameNew);
+      if (nameNew.length === 0) {
+        console.error('The list\'s name can\'t be empty.')
+      } else {
+        // TODO: push to list array in Store and Local Storage
+        console.log('new: ' + nameNew);
+      }
+    },
+    setListFocus(listName:string) {
+      this.listNewDialog = false;
+      this.listFocus = listName;
     }
   }
 });
