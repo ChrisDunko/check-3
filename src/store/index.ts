@@ -1,7 +1,6 @@
 import { createStore } from 'vuex';
 
 export type State = {
-  textYup: string;
   lists: List[];
 }
 
@@ -16,7 +15,6 @@ type List = {
 }
 
 const state: State = {
-  textYup: 'yup!',
   lists: []
 }
 

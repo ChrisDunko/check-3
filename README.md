@@ -16,7 +16,7 @@ Check 3 is a SPA (Single Page Application) that means that there are no page rel
 
 Since I don't use SSR (Server Side Rendering) in this project the Search Engine friendliness is as bad as it gets. User typically don't want to find their shopping cards on Duck Duck Go so that shouldn't be an issue.
 
-You can either host the app on your own server or use it as an SaaS (Software as a Service) at [check3.dunkake.ch](https://check3.dunkake.ch).
+You can either host the app on your own server or use it as a SaaS (Software as a Service) at [check3.dunkake.ch](https://check3.dunkake.ch).
 
 I mainly created this app to get comfortable with typescripted Vuex 4 stores (and I really needed a electronic shopping list app).
 
