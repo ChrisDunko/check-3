@@ -35,6 +35,46 @@ export default defineComponent({
   methods: {},
   created() {
     // get data from local storage
+    let listsString = localStorage.getItem("lists") ?? '';
+    console.log(listsString);
+    if(!listsString) {
+      console.log('create');
+      // TODO: delete dev data
+      const dataObject = [
+        {
+          name: 'erste Liste',
+          items: [
+            {
+              name: 'item 1.1',
+              done: false
+            },
+            {
+              name: 'item 1.2',
+              done: true
+            }
+          ]
+        },
+        {
+          name: 'zweite Liste',
+          items: [
+            {
+              name: 'item 2.1',
+              done: false
+            },
+            {
+              name: 'item 2.2',
+              done: true
+            }
+          ]
+        }
+      ];
+      this.$store.state.lists = dataObject;
+      listsString = JSON.stringify(dataObject);
+      localStorage.setItem('lists', listsString);
+    } else {
+      const dataObject = JSON.parse(listsString);
+      this.$store.state.lists = dataObject;
+    }
   }
 });
 </script>
