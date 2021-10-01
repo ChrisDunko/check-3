@@ -1,5 +1,7 @@
 <template>
-  <intro></intro>
+  <intro
+      v-on:closeIntro="dismissIntro"
+  ></intro>
   <lists
       v-on:selectList="setListFocus"
   ></lists>
@@ -32,7 +34,8 @@ export default defineComponent({
     return {
       listNewDialog: true,
       itemNewDialog: false,
-      listFocus: ''
+      listFocus: '',
+      showIntro: true
     }
   },
   methods: {
@@ -50,9 +53,12 @@ export default defineComponent({
         localStorage.setItem('lists', listsString);
       }
     },
-    setListFocus(listName:string) {
+    setListFocus(listName:string): void {
       this.listNewDialog = false;
       this.listFocus = listName;
+    },
+    dismissIntro(): void {
+      this.showIntro = false;
     }
   }
 });

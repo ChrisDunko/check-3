@@ -2,7 +2,7 @@
   <div id="pageheader">
     <div>
       <div>
-        <span style="margin-right: 20px;">Check 3</span>
+        <a style="margin-right: 20px;" href="https://github.com/ChrisDunko/check-3" target="_blank">Check 3</a>
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div id="pagefooter">
-    <div>Dragon Eyes Software</div>
+    <div><a href="https://dragoneyes.software" target="_blank">Dragon Eyes Software</a></div>
   </div>
 
 
