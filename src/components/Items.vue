@@ -1,11 +1,14 @@
 <template>
-  <p>Items</p>
+  <p>Items ({{ listName }})</p>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 export default defineComponent({
-  name: "Items"
+  name: "Items",
+  props: [
+      'listName'
+  ]
 });
 </script>
 

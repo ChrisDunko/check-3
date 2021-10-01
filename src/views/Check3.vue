@@ -3,7 +3,10 @@
   <lists
       v-on:selectList="setListFocus"
   ></lists>
-  <items></items>
+  <items
+      v-if="listFocus"
+      v-bind:listName="listFocus"
+  ></items>
   <new
       v-if="listNewDialog"
       dialog-type="List"
