@@ -25,4 +25,4 @@ I hope you enjoy reading my code and / or using the app and I would be more that
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3
 
-Copyright Christoph Dunkake & Dragon Eyes Software
+Copyright [Christoph Dunkake](https://www.xing.com/profile/Christoph_Dunkake) & [Dragon Eyes Software](https://dragoneyes.software)
