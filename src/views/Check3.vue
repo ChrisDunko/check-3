@@ -37,8 +37,14 @@ export default defineComponent({
       if (nameNew.length === 0) {
         console.error('The list\'s name can\'t be empty.')
       } else {
-        // TODO: push to list array in Store and Local Storage
-        console.log('new: ' + nameNew);
+        // console.log('new: ' + nameNew);
+        const newListObject = {
+          name: nameNew,
+          items: []
+        }
+        this.$store.state.lists.unshift(newListObject);
+        const listsString = JSON.stringify(this.$store.state.lists);
+        localStorage.setItem('lists', listsString);
       }
     },
     setListFocus(listName:string) {
