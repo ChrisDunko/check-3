@@ -1,5 +1,6 @@
 <template>
   <p>Items ({{ listName }})</p>
+  <button v-on:click="closeList">close</button>
 </template>
 
 <script>
@@ -8,7 +9,15 @@ export default defineComponent({
   name: "Items",
   props: [
       'listName'
-  ]
+  ],
+  emits: [
+      'closeList'
+  ],
+  methods: {
+    closeList() {
+      this.$emit('closeList');
+    }
+  }
 });
 </script>
 

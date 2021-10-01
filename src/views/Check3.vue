@@ -1,13 +1,16 @@
 <template>
   <intro
+      v-if="showIntro"
       v-on:closeIntro="dismissIntro"
   ></intro>
   <lists
+      v-if="!listFocus"
       v-on:selectList="setListFocus"
   ></lists>
   <items
       v-if="listFocus"
       v-bind:listName="listFocus"
+      v-on:closeList="closeList"
   ></items>
   <new
       v-if="listNewDialog"
@@ -59,6 +62,9 @@ export default defineComponent({
     },
     dismissIntro(): void {
       this.showIntro = false;
+    },
+    closeList() {
+      this.listFocus = '';
     }
   }
 });
