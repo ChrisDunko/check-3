@@ -7,17 +7,26 @@
     </li>
   </ul>
   <button v-on:click="closeList">close</button>
+  <new
+      dialog-type="Item"
+      v-on:save="newSave"
+  ></new>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
+import New from "@/components/New.vue";
 export default defineComponent({
   name: "Items",
+  components: {
+    New
+  },
   props: [
       'listName'
   ],
   emits: [
-      'closeList'
+      'closeList',
+      'save'
   ],
   computed: {
     listItems: function() {
@@ -27,6 +36,10 @@ export default defineComponent({
   methods: {
     closeList() {
       this.$emit('closeList');
+    },
+    newSave(nameNew: string) {
+      console.log('New @ Items: ' + nameNew);
+      this.$emit('save', nameNew);
     }
   }
 });

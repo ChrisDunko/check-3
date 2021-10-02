@@ -11,6 +11,7 @@
       v-if="listFocus"
       v-bind:listName="listFocus"
       v-on:closeList="closeList"
+      v-on:save="newSave"
   ></items>
   <new
       v-if="listNewDialog"
@@ -46,12 +47,24 @@ export default defineComponent({
       if (nameNew.length === 0) {
         console.error('The list\'s name can\'t be empty.')
       } else {
-        // console.log('new: ' + nameNew);
-        const newListObject = {
-          name: nameNew,
-          items: []
+        console.log('new: ' + nameNew);
+
+        if(this.listFocus) {
+          // save item
+          const newItemObject = {
+            name: nameNew,
+            done: false
+          }
+          console.log('new item: ' + newItemObject);
+          this.$store.state.lists.find(list => list.name === this.listFocus)?.items.unshift(newItemObject);
+        } else {
+          // save list
+          const newListObject = {
+            name: nameNew,
+            items: []
+          }
+          this.$store.state.lists.unshift(newListObject);
         }
-        this.$store.state.lists.unshift(newListObject);
         const listsString = JSON.stringify(this.$store.state.lists);
         localStorage.setItem('lists', listsString);
       }
@@ -65,6 +78,7 @@ export default defineComponent({
     },
     closeList() {
       this.listFocus = '';
+      this.listNewDialog = true;
     }
   }
 });

@@ -2,9 +2,6 @@
   <p>New {{ dialogType }}</p>
   <input type="text" v-model="nameNew">
   <button v-on:click="save">save</button>
-
-<!--  <p>{{ nameNew }}</p>-->
-
 </template>
 
 <script>
@@ -24,8 +21,9 @@ export default defineComponent({
   },
   methods: {
     save() {
-      console.log('in new: ' + this.nameNew);
+      console.log('New ' + this.dialogType + ': ' + this.nameNew);
       this.$emit('save', this.nameNew);
+      this.nameNew = '';
     }
   }
 });
