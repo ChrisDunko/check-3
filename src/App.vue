@@ -14,14 +14,6 @@
   <div id="pagefooter">
     <div><a href="https://dragoneyes.software" target="_blank">Dragon Eyes Software</a></div>
   </div>
-
-
-
-<!--  <div id="nav">-->
-<!--    <router-link to="/">Home</router-link> |-->
-<!--    <router-link to="/about">About</router-link>-->
-<!--  </div>-->
-<!--  <router-view/>-->
 </template>
 
 <script lang="ts">
@@ -39,10 +31,9 @@ export default defineComponent({
     console.log(listsString);
     if(!listsString) {
       console.log('create');
-      // TODO: delete dev data
       const dataObject = [
         {
-          name: 'erste Liste',
+          name: 'Example List 1',
           items: [
             {
               name: 'item 1.1',
@@ -55,7 +46,7 @@ export default defineComponent({
           ]
         },
         {
-          name: 'zweite Liste',
+          name: 'Example List 2',
           items: [
             {
               name: 'item 2.1',
