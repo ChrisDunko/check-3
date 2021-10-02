@@ -1,5 +1,5 @@
 <template>
-  <p>Items ({{ listName }})</p>
+  <p>List ({{ listName }})</p>
   <ul>
     <li v-for="item in listItems"
         v-bind:key="item.name">
@@ -11,13 +11,16 @@
       dialog-type="Item"
       v-on:save="newSave"
   ></new>
+  <hr>
+  <p>Careful bejond this point...</p>
+  <button v-on:click="deleteList">Delete list</button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import New from "@/components/New.vue";
 export default defineComponent({
-  name: "Items",
+  name: "List",
   components: {
     New
   },
@@ -26,6 +29,7 @@ export default defineComponent({
   ],
   emits: [
       'closeList',
+      'deleteList',
       'save'
   ],
   computed: {
@@ -37,8 +41,11 @@ export default defineComponent({
     closeList() {
       this.$emit('closeList');
     },
+    deleteList() {
+      this.$emit('deleteList');
+    },
     newSave(nameNew: string) {
-      console.log('New @ Items: ' + nameNew);
+      console.log('New @ List: ' + nameNew);
       this.$emit('save', nameNew);
     }
   }

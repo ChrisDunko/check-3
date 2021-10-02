@@ -7,12 +7,13 @@
       v-if="!listFocus"
       v-on:selectList="setListFocus"
   ></lists>
-  <items
+  <list
       v-if="listFocus"
       v-bind:listName="listFocus"
       v-on:closeList="closeList"
+      v-on:deleteList="deleteList"
       v-on:save="newSave"
-  ></items>
+  ></list>
   <new
       v-if="listNewDialog"
       dialog-type="List"
@@ -24,7 +25,7 @@
 import { defineComponent } from 'vue';
 import Intro from "@/components/Intro.vue";
 import Lists from "@/components/Lists.vue";
-import Items from "@/components/Items.vue";
+import List from "@/components/List.vue";
 import New from "@/components/New.vue";
 export default defineComponent({
   name: 'Index',
@@ -32,7 +33,7 @@ export default defineComponent({
     New,
     Intro,
     Lists,
-    Items,
+    List,
   },
   data() {
     return {
@@ -79,6 +80,16 @@ export default defineComponent({
     closeList() {
       this.listFocus = '';
       this.listNewDialog = true;
+    },
+    deleteList() {
+      // console.log('delete list ' + this.listFocus);
+      const position = this.$store.state.lists.map(function(list) { return list.name; }).indexOf(this.listFocus);
+      // console.log(position);
+      this.$store.state.lists.splice(position, 1);
+      this.listFocus = '';
+      this.listNewDialog = true;
+      const listsString = JSON.stringify(this.$store.state.lists);
+      localStorage.setItem('lists', listsString);
     }
   }
 });
