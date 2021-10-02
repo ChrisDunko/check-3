@@ -54,7 +54,8 @@ export default defineComponent({
           // item
           // check if item is already on the list (since the name is used as the key of the item, duplicate entries have to be avoided)
           const listPosition: number = this.$store.state.lists.map(function(list) { return list.name }).indexOf(this.listFocus) ?? -1;
-          const itemPosition: number = this.$store.state.lists.find(list => list.name === this.listFocus)?.items.map(function(item) { return item.name }).indexOf(nameNew) ?? -1;
+          // const itemPosition: number = this.$store.state.lists.find(list => list.name === this.listFocus)?.items.map(function(item) { return item.name }).indexOf(nameNew) ?? -1;
+          const itemPosition: number = this.$store.state.lists[listPosition].items.map(function(item) { return item.name }).indexOf(nameNew) ?? -1;
           if(listPosition > -1) {
             // list exists
             if(itemPosition === -1) {

@@ -1,11 +1,20 @@
 <template>
   <h2>{{ listName }}</h2>
-  <ul>
-    <li v-for="item in listItems"
-        v-bind:key="item.name">
-      {{ item.name }}
-    </li>
-  </ul>
+  <div v-for="item in listItems"
+       v-bind:key="item.name"
+       style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
+    <span>{{ item.name }}</span>
+    <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
+    <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
+  </div>
+
+
+<!--  <ul>-->
+<!--    <li v-for="item in listItems"-->
+<!--        v-bind:key="item.name">-->
+<!--      {{ item.name }}-->
+<!--    </li>-->
+<!--  </ul>-->
   <button v-on:click="closeList">close</button>
   <new
       dialog-type="Item"
@@ -45,8 +54,24 @@ export default defineComponent({
       this.$emit('deleteList');
     },
     newSave(nameNew: string) {
-      console.log('New @ List: ' + nameNew);
+      // console.log('New @ List: ' + nameNew);
       this.$emit('save', nameNew);
+    },
+    setItemDone(itemName:string) {
+      // console.log(itemName);
+      const listPosition: number = this.$store.state.lists.map(function(list) { return list.name }).indexOf(this.listName) ?? -1;
+      const itemPosition: number = this.$store.state.lists[listPosition].items.map(function(item) { return item.name }).indexOf(itemName) ?? -1;
+      this.$store.state.lists[listPosition].items[itemPosition].done = true;
+      const listsString = JSON.stringify(this.$store.state.lists);
+      localStorage.setItem('lists', listsString);
+    },
+    setItemUndone(itemName:string) {
+      // console.log(itemName);
+      const listPosition: number = this.$store.state.lists.map(function(list) { return list.name }).indexOf(this.listName) ?? -1;
+      const itemPosition: number = this.$store.state.lists[listPosition].items.map(function(item) { return item.name }).indexOf(itemName) ?? -1;
+      this.$store.state.lists[listPosition].items[itemPosition].done = false;
+      const listsString = JSON.stringify(this.$store.state.lists);
+      localStorage.setItem('lists', listsString);
     }
   }
 });
