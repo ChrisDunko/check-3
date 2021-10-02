@@ -1,25 +1,24 @@
 <template>
   <h2>{{ listName }}</h2>
-  <div v-for="item in listItems"
+  <div v-for="item in listItemsUndone"
        v-bind:key="item.name"
        style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
     <span>{{ item.name }}</span>
     <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
     <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
   </div>
-
-
-<!--  <ul>-->
-<!--    <li v-for="item in listItems"-->
-<!--        v-bind:key="item.name">-->
-<!--      {{ item.name }}-->
-<!--    </li>-->
-<!--  </ul>-->
   <button v-on:click="closeList">close</button>
   <new
       dialog-type="Item"
       v-on:save="newSave"
   ></new>
+  <div v-for="item in listItemsDone"
+       v-bind:key="item.name"
+       style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
+    <span>{{ item.name }}</span>
+    <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
+    <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
+  </div>
   <hr>
   <p>Careful bejond this point...</p>
   <button v-on:click="deleteList">Delete list</button>
@@ -43,7 +42,17 @@ export default defineComponent({
   ],
   computed: {
     listItems: function() {
-      return this.$store.state.lists.find(list => list.name == this.listName)?.items;
+      return this.$store.state.lists.find(list => list.name == this.listName)?.items ?? [];
+    },
+    listItemsUndone: function() {
+      return this.listItems.filter(item => {
+        return item.done === false;
+      })
+    },
+    listItemsDone: function() {
+      return this.listItems.filter(item => {
+        return item.done === true;
+      })
     }
   },
   methods: {
