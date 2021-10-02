@@ -1,5 +1,5 @@
 <template>
-  <p>List ({{ listName }})</p>
+  <h2>{{ listName }}</h2>
   <ul>
     <li v-for="item in listItems"
         v-bind:key="item.name">
