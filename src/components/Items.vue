@@ -30,7 +30,7 @@ export default defineComponent({
   ],
   computed: {
     listItems: function() {
-      return this.$store.state.lists.find(list => list.name == this.listName).items;
+      return this.$store.state.lists.find(list => list.name == this.listName)?.items;
     }
   },
   methods: {
