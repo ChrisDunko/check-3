@@ -48,7 +48,7 @@ export default defineComponent({
       if (nameNew.length === 0) {
         console.error('The list\'s name can\'t be empty.')
       } else {
-        console.log('new: ' + nameNew);
+        // console.log('new: ' + nameNew);
 
         if(this.listFocus) {
           // item
