@@ -25,7 +25,8 @@
 import { defineComponent } from 'vue';
 import Intro from "@/components/Intro.vue";
 import Lists from "@/components/Lists.vue";
-import List from "@/components/List.vue";
+// import List from "@/components/ListOptions.vue";
+import List from "@/components/ListComposition.vue";
 import New from "@/components/New.vue";
 export default defineComponent({
   name: 'Index',
