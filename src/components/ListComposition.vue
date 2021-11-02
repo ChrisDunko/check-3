@@ -3,7 +3,7 @@
   <div v-for="item in listItemsUndone"
        v-bind:key="item.name"
        style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
-    <span>** {{ item.name }}</span>
+    <span>{{ item.name }}</span>
     <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
     <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
   </div>
@@ -30,6 +30,9 @@ import { useStore } from 'vuex';
 import New from "@/components/New.vue";
 export default defineComponent({
   name: "ListComposition",
+  components: {
+    New
+  },
   props: [
     'listName'
   ],
