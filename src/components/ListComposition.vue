@@ -33,7 +33,7 @@ export default defineComponent({
   props: [
     'listName'
   ],
-  setup(props) {
+  setup(props, context) {
     type Item = {
       name: string;
       done: boolean;
@@ -43,6 +43,7 @@ export default defineComponent({
       items: Item[];
     }
     const store = useStore();
+
     const listItems = computed(function() {
       return store.state.lists.find((list: List) => list.name == props.listName)?.items ?? [];
     });
@@ -56,7 +57,43 @@ export default defineComponent({
         return item.done === true;
       });
     });
-    return { listItemsUndone, listItemsDone }
+
+    function closeList() {
+      context.emit('closeList');
+    }
+    function deleteList() {
+      context.emit('deleteList');
+    }
+    function newSave(nameNew: string) {
+      // console.log('New @ List: ' + nameNew);
+      context.emit('save', nameNew);
+    }
+    function setItemDone(itemName: string) {
+      // console.log(itemName);
+      const listPosition: number = store.state.lists.map(function(list: List) { return list.name }).indexOf(props.listName) ?? -1;
+      const itemPosition: number = store.state.lists[listPosition].items.map(function(item: Item) { return item.name }).indexOf(itemName) ?? -1;
+      store.state.lists[listPosition].items[itemPosition].done = true;
+      const listsString = JSON.stringify(store.state.lists);
+      localStorage.setItem('lists', listsString);
+    }
+    function setItemUndone(itemName: string) {
+      // console.log(itemName);
+      const listPosition: number = store.state.lists.map(function(list: List) { return list.name }).indexOf(props.listName) ?? -1;
+      const itemPosition: number = store.state.lists[listPosition].items.map(function(item: Item) { return item.name }).indexOf(itemName) ?? -1;
+      store.state.lists[listPosition].items[itemPosition].done = false;
+      const listsString = JSON.stringify(store.state.lists);
+      localStorage.setItem('lists', listsString);
+    }
+
+    return {
+      listItemsUndone,
+      listItemsDone,
+      closeList,
+      deleteList,
+      newSave,
+      setItemDone,
+      setItemUndone,
+    }
   }
 });
 </script>
