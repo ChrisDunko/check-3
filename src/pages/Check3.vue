@@ -47,6 +47,7 @@ export default defineComponent({
   methods: {
     newSave(nameNew: string) {
       if (nameNew.length === 0) {
+        // eslint-disable-next-line
         console.error('The list\'s name can\'t be empty.')
       } else {
         // console.log('new: ' + nameNew);
@@ -70,6 +71,7 @@ export default defineComponent({
             } else {
               // recycle item
               this.$store.state.lists[listPosition].items[itemPosition].done = false;
+              // eslint-disable-next-line
               console.info('The item is already on that list.');
             }
           }
