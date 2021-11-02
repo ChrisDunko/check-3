@@ -2,7 +2,8 @@
   <div id="pageheader">
     <div>
       <div>
-        <a style="margin-right: 20px;" href="https://github.com/ChrisDunko/check-3" target="_blank">Check 3</a>
+<!--        <a style="margin-right: 20px;" href="https://github.com/ChrisDunko/check-3" target="_blank">Check 3</a>-->
+        <router-link to="/about">Check 3</router-link>
       </div>
     </div>
   </div>

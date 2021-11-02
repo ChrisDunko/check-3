@@ -25,7 +25,8 @@
 import { defineComponent } from 'vue';
 import Intro from "@/components/Intro.vue";
 import Lists from "@/components/Lists.vue";
-import List from "@/components/List.vue";
+// import List from "@/components/ListOptions.vue";
+import List from "@/components/ListComposition.vue";
 import New from "@/components/New.vue";
 export default defineComponent({
   name: 'Index',
@@ -46,9 +47,10 @@ export default defineComponent({
   methods: {
     newSave(nameNew: string) {
       if (nameNew.length === 0) {
+        // eslint-disable-next-line
         console.error('The list\'s name can\'t be empty.')
       } else {
-        console.log('new: ' + nameNew);
+        // console.log('new: ' + nameNew);
 
         if(this.listFocus) {
           // item
@@ -69,6 +71,7 @@ export default defineComponent({
             } else {
               // recycle item
               this.$store.state.lists[listPosition].items[itemPosition].done = false;
+              // eslint-disable-next-line
               console.info('The item is already on that list.');
             }
           }
