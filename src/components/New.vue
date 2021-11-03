@@ -21,6 +21,7 @@ export default defineComponent({
   },
   methods: {
     save() {
+      // eslint-disable-next-line
       console.log('New ' + this.dialogType + ': ' + this.nameNew);
       this.$emit('save', this.nameNew);
       this.nameNew = '';

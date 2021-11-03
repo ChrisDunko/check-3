@@ -5,6 +5,9 @@
   <p>{{ user.name }}</p>
 
   <router-link to="/">start using (again)</router-link>
+
+  <hr>
+  <p><a href="https://github.com/ChrisDunko/check-3" target="_blank">Github</a></p>
 </template>
 
 <script lang="ts">
