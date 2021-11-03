@@ -94,6 +94,7 @@ export default defineComponent({
     },
     dismissIntro(): void {
       this.showIntro = false;
+      localStorage.setItem('intro', '1');
     },
     closeList() {
       this.listFocus = '';
@@ -108,6 +109,12 @@ export default defineComponent({
       this.listNewDialog = true;
       const listsString = JSON.stringify(this.$store.state.lists);
       localStorage.setItem('lists', listsString);
+    }
+  },
+  created() {
+    let lastIntro = localStorage.getItem('intro') ?? 0;
+    if(lastIntro === '1') {
+      this.showIntro = false;
     }
   }
 });
