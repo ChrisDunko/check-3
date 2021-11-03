@@ -29,8 +29,10 @@ export default defineComponent({
   created() {
     // get data from local storage
     let listsString = localStorage.getItem("lists") ?? '';
+    // eslint-disable-next-line
     console.log(listsString);
     if(!listsString) {
+      // eslint-disable-next-line
       console.log('create');
       const dataObject = [
         {

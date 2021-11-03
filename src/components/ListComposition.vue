@@ -1,24 +1,30 @@
 <template>
-  <h2>{{ listName }}</h2>
-  <div v-for="item in listItemsUndone"
-       v-bind:key="item.name"
-       style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
-    <span>{{ item.name }}</span>
-    <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
-    <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
-  </div>
-  <button v-on:click="closeList">close</button>
+  <section>
+    <h2>{{ listName }}</h2>
+    <div v-for="item in listItemsUndone"
+         v-bind:key="item.name"
+         style="padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
+      <span>{{ item.name }}</span>
+      <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
+      <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
+    </div>
+  </section>
+  <section>
+    <button v-on:click="closeList">close</button>
+  </section>
   <new
       dialog-type="Item"
       v-on:save="newSave"
   ></new>
-  <div v-for="item in listItemsDone"
-       v-bind:key="item.name"
-       style="background-color: darkgray; padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
-    <span>{{ item.name }}</span>
-    <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
-    <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
-  </div>
+  <section>
+    <div v-for="item in listItemsDone"
+         v-bind:key="item.name"
+         style="padding: 5px 0; display: flex; flex-direction: row; justify-content: space-between;">
+      <span>{{ item.name }}</span>
+      <button v-if="!item.done" v-on:click="setItemDone(item.name)">done</button>
+      <button v-if="item.done" v-on:click="setItemUndone(item.name)">not done</button>
+    </div>
+  </section>
   <hr>
   <p>Careful bejond this point...</p>
   <button v-on:click="deleteList">Delete list</button>

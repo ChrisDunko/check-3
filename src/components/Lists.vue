@@ -1,20 +1,13 @@
 <template>
-  <h2>Lists</h2>
-  <div v-for="list in $store.state.lists"
-       v-bind:key="list.name"
-       v-on:click="selectList(list.name)"
-       style="background-color: darkgray; padding: 5px 0;">
-    {{ list.name }}
-  </div>
-
-
-<!--  <ul>-->
-<!--    <li v-for="list in $store.state.lists"-->
-<!--      v-bind:key="list.name"-->
-<!--      v-on:click="selectList(list.name)">-->
-<!--      {{ list.name }}-->
-<!--    </li>-->
-<!--  </ul>-->
+  <section>
+    <h2>Lists</h2>
+    <div v-for="list in $store.state.lists"
+         v-bind:key="list.name"
+         v-on:click="selectList(list.name)"
+         style="padding: 15px 0;">
+      {{ list.name }}
+    </div>
+  </section>
 </template>
 
 <script>

@@ -1,7 +1,9 @@
 <template>
-  <p>New {{ dialogType }}</p>
-  <input type="text" v-model="nameNew">
-  <button v-on:click="save">save</button>
+  <section>
+    <p>New {{ dialogType }}</p>
+    <input type="text" v-model="nameNew">
+    <button v-on:click="save">save</button>
+  </section>
 </template>
 
 <script>
